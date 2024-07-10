@@ -55,5 +55,5 @@ Special thanks to all the contributors and researchers in the field of virtualiz
 
 ## Contact
 
-For questions or suggestions, please open an issue or contact me at [your email].
+For questions or suggestions, please open an issue or contact me at [xsudoxx@yahoo.com].
 
