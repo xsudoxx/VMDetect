@@ -1,15 +1,36 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <windows.h>
 
-int main(){
-    OSVERSIONINFOEX osvi;
-    ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-    osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+// function to check for VM characteristics
 
-    if (GetVersionEx((OSVERSIONINFO*)&osvi)){
-        printf("Windows Version %d.%d (Build %d)\n", osvi.dwMajorVersion, osvi.dwMinorVersion, osvi.dwBuildNumber);
+bool is_running_in_vm(){
+    bool vm_detected = false;
+
+    // Check for common virtualization artificats
+
+    if (IsDebuggerPresent() || 
+        GetModuleHandle("sbiedll.dll") ||
+        GetModuleHandle("sbieDll.dll") ||
+        GetModuleHandle("vboxhook.dll") ||
+        GetModuleHandle("VBoxHook.dll") ||
+        GetModuleHandle("vmcheck.dll") ||
+        GetModuleHandle("vmsrvc.dll") ||
+        GetModuleHandle("vmtools.dll") ||
+        GetModuleHandle("vgauth.dll") ||
+        GetModuleHandle("vmhgfs.dll") ||
+        GetModuleHandle("vmguestlib.dll") ||
+        GetModuleHandle("vmhgfs.dll")
+    
+    ){
+        vm_detected = true;
+    }
+}
+int main(){
+    if (is_running_in_vm()){
+        printf("Virtual Machine Detected\n");
     } else {
-        printf("Failed to retrieve Windows version informatio.\n");
+        printf("Physical Machine Detected\n");
     }
 
     return 0;
