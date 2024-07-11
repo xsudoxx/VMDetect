@@ -1,59 +1,43 @@
-# VMDetector
+# Detect Virtual Machine (detect_vm)
 
-VMDetector is a C program designed to identify whether it is running inside a virtual machine (VM) environment. This tool utilizes various techniques to detect common virtualization platforms, making it useful for security analysis, anti-malware applications, and system integrity checks.
+This C program detects whether it is running inside a virtual machine (VM) environment on a Windows system. It uses common artifacts and indicators associated with virtualization software to make an educated guess.
 
 ## Features
 
-- Detects common virtualization platforms such as VMware, VirtualBox, Hyper-V, and more.
-- Lightweight and efficient.
-- Provides a simple API for integration into other projects.
+- **Detection Method**: Checks for common virtualization artifacts such as debugger presence and specific module handles.
+- **Platform**: Designed for Windows operating systems.
+- **Output**: Prints whether a virtual machine is detected or not.
 
 ## Requirements
 
-- A C compiler (e.g., GCC, Clang, MSVC)
-- Windows operating system (for current version)
+- **Compiler**: GCC (GNU Compiler Collection) for Windows (MinGW or MSYS2).
+- **Operating System**: Windows.
 
-## Installation
+## Compilation
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/VMDetector.git
-    cd VMDetector
-    ```
+1. **Install GCC**: Ensure GCC is installed on your system. You can install GCC through MinGW or MSYS2.
 
-2. Compile the source code:
-    ```sh
-    gcc -o vm_detector vm_detector.c
-    ```
+2. **Compile the Program**:
+
+   ```bash
+   gcc -o detect_vm detect_vm.c
 
 ## Usage
-
-1. Run the compiled program:
-    ```sh
-    ./vm_detector
-    ```
-
-2. The program will output whether it is running inside a VM and provide details about the detected environment.
+````
+./detect_vm.exe
+````
+This will execute the compiled detect_vm.exe program and print whether a virtual machine is detected based on the checks performed.
 
 ## Example Output
+If a virtual machine is detected:
 ````
-VM Detected: Yes
-Virtualization Platform: VMware
+Virtual Machine Detected
 ````
+If no virtual machine is detected:
+````
+Physical Machine Detected
+````
+## Notes
+- This program provides basic detection based on known virtualization artifacts. It may produce false positives or negatives depending on the specific virtualization environment and configurations.
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request with your improvements or new detection techniques.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Acknowledgements
-
-Special thanks to all the contributors and researchers in the field of virtualization detection.
-
-## Contact
-
-For questions or suggestions, please open an issue or contact me at [xsudoxx@yahoo.com].
-
+- Use responsibly and ensure compliance with legal and ethical guidelines when detecting virtual machines.
