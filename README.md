@@ -1,4 +1,4 @@
-# Detect Virtual Machine (detect_vm)
+# Detect Virtual Machine (detectVM)
 
 This C program detects whether it is running inside a virtual machine (VM) environment on a Windows system. It uses common artifacts and indicators associated with virtualization software to make an educated guess.
 
@@ -20,13 +20,13 @@ This C program detects whether it is running inside a virtual machine (VM) envir
 2. **Compile the Program**:
 
    ```bash
-   gcc -o detect_vm detect_vm.c
+   gcc -o detectVM detectVM.c
 
 ## Usage
 ````
-./detect_vm.exe
+./detectVM.exe
 ````
-This will execute the compiled detect_vm.exe program and print whether a virtual machine is detected based on the checks performed.
+This will execute the compiled detectVM.exe program and print whether a virtual machine is detected based on the checks performed.
 
 ## Example Output
 If a virtual machine is detected:
