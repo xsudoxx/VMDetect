@@ -1,18 +1,16 @@
 #include <stdio.h>
-
-#ifdef _WIN32
-    const char* os = "Windows";
-#elif __APPLE__
-    const char* os = "macos";
-#elif __linux__
-    const char* os = "Linux";
-#elif __unix__
-    const char* os = "POSIX";
-#else
-    const char* os = "Unknown";
-#endif
+#include <windows.h>
 
 int main(){
-    printf("Operating System: %s\n", os);
+    OSVERSIONINFOEX osvi;
+    ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+    osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+
+    if (GetVersionEx((OSVERSIONINFO*)&osvi)){
+        printf("Windows Version %d.%d (Build %d)\n", osvi.dwMajorVersion, osvi.dwMinorVersion, osvi.dwBuildNumber);
+    } else {
+        printf("Failed to retrieve Windows version informatio.\n");
+    }
+
     return 0;
 }
